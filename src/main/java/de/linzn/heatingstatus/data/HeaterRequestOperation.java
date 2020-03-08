@@ -13,23 +13,28 @@ package de.linzn.heatingstatus.data;
 
 
 import de.azcore.azcoreRuntime.AZCoreRuntimeApp;
-import de.azcore.azcoreRuntime.taskManagment.operations.TaskOperation;
+import de.azcore.azcoreRuntime.taskManagment.operations.AbstractOperation;
+import de.azcore.azcoreRuntime.taskManagment.operations.OperationOutput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class HeaterOperations {
-    public static TaskOperation request_heating_operation = o -> {
+public class HeaterRequestOperation extends AbstractOperation {
+
+    @Override
+    public OperationOutput runOperation() {
+        OperationOutput operationOutput = new OperationOutput(this);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
         try {
             dataOutputStream.writeUTF("request");
+            operationOutput.setExit(0);
         } catch (IOException e) {
             e.printStackTrace();
+            operationOutput.setExit(-1);
         }
         AZCoreRuntimeApp.getInstance().getZSocketModule().getzServer().getClients().values().forEach(serverConnection -> serverConnection.writeOutput("heater_data", byteArrayOutputStream.toByteArray()));
-        return null;
-    };
-
+        return operationOutput;
+    }
 }

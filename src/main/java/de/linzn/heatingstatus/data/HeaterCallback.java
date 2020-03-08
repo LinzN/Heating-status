@@ -15,8 +15,7 @@ package de.linzn.heatingstatus.data;
 import de.azcore.azcoreRuntime.AppLogger;
 import de.azcore.azcoreRuntime.taskManagment.AbstractCallback;
 import de.azcore.azcoreRuntime.taskManagment.CallbackTime;
-import de.azcore.azcoreRuntime.taskManagment.operations.OperationRegister;
-import de.azcore.azcoreRuntime.taskManagment.operations.TaskOperation;
+import de.azcore.azcoreRuntime.taskManagment.operations.OperationOutput;
 import de.azcore.azcoreRuntime.utils.Color;
 
 import java.util.concurrent.TimeUnit;
@@ -24,12 +23,12 @@ import java.util.concurrent.TimeUnit;
 public class HeaterCallback extends AbstractCallback {
     @Override
     public void operation() {
-        TaskOperation taskOperation = OperationRegister.getOperation("request_heating_operation");
-        addOperationData(taskOperation, null);
+        HeaterRequestOperation heaterRequestOperation = new HeaterRequestOperation();
+        addOperationData(heaterRequestOperation);
     }
 
     @Override
-    public void callback(Object object) {
+    public void callback(OperationOutput operationOutput) {
         AppLogger.debug(Color.GREEN + "Heating data request send");
     }
 
