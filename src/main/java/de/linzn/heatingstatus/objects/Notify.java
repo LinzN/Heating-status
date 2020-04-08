@@ -12,9 +12,9 @@
 package de.linzn.heatingstatus.objects;
 
 
-import de.azcore.azcoreRuntime.AZCoreRuntimeApp;
-import de.azcore.azcoreRuntime.modules.notificationModule.NotificationContainer;
-import de.azcore.azcoreRuntime.modules.notificationModule.NotificationPriority;
+import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.modules.notificationModule.NotificationContainer;
+import de.stem.stemSystem.modules.notificationModule.NotificationPriority;
 
 public class Notify {
     private int index;
@@ -52,7 +52,7 @@ public class Notify {
         if (!oldValue) {
             if (this.active) {
                 NotificationContainer notificationContainer = new NotificationContainer("New notify " + this.name.toUpperCase() + " with state ACTIVE is called!", NotificationPriority.HIGH);
-                AZCoreRuntimeApp.getInstance().getNotificationModule().pushNotification(notificationContainer);
+                STEMSystemApp.getInstance().getNotificationModule().pushNotification(notificationContainer);
             }
         }
     }

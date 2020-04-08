@@ -11,10 +11,11 @@
 
 package de.linzn.heatingstatus.dblogger;
 
-import de.azcore.azcoreRuntime.AZCoreRuntimeApp;
+
 import de.linzn.heatingstatus.objects.Inlet;
 import de.linzn.heatingstatus.objects.Notify;
 import de.linzn.heatingstatus.objects.Outlet;
+import de.stem.stemSystem.STEMSystemApp;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class DBLogger {
     public List<Inlet> loadInlets() {
         List<Inlet> inlets = new ArrayList<>();
         try {
-            Connection con = AZCoreRuntimeApp.getInstance().getDatabaseModule().getConnection();
+            Connection con = STEMSystemApp.getInstance().getDatabaseModule().getConnection();
             Statement st = con.createStatement();
             String sqlquery = ("SELECT * FROM `addon_heater_inlets`");
             ResultSet rs = st.executeQuery(sqlquery);
@@ -38,7 +39,7 @@ public class DBLogger {
                 Inlet inlet = new Inlet(index, name);
                 inlets.add(inlet);
             }
-            AZCoreRuntimeApp.getInstance().getDatabaseModule().releaseConnection(con);
+            STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,7 +49,7 @@ public class DBLogger {
     public List<Outlet> loadOutlets() {
         List<Outlet> outlets = new ArrayList<>();
         try {
-            Connection con = AZCoreRuntimeApp.getInstance().getDatabaseModule().getConnection();
+            Connection con = STEMSystemApp.getInstance().getDatabaseModule().getConnection();
             Statement st = con.createStatement();
             String sqlquery = ("SELECT * FROM `addon_heater_outlets`");
             ResultSet rs = st.executeQuery(sqlquery);
@@ -58,7 +59,7 @@ public class DBLogger {
                 Outlet outlet = new Outlet(index, name);
                 outlets.add(outlet);
             }
-            AZCoreRuntimeApp.getInstance().getDatabaseModule().releaseConnection(con);
+            STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +69,7 @@ public class DBLogger {
     public List<Notify> loadNotifies() {
         List<Notify> notifies = new ArrayList<>();
         try {
-            Connection con = AZCoreRuntimeApp.getInstance().getDatabaseModule().getConnection();
+            Connection con = STEMSystemApp.getInstance().getDatabaseModule().getConnection();
             Statement st = con.createStatement();
             String sqlquery = ("SELECT * FROM `addon_heater_notifies`");
             ResultSet rs = st.executeQuery(sqlquery);
@@ -78,7 +79,7 @@ public class DBLogger {
                 Notify notify = new Notify(index, name);
                 notifies.add(notify);
             }
-            AZCoreRuntimeApp.getInstance().getDatabaseModule().releaseConnection(con);
+            STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,7 +88,7 @@ public class DBLogger {
 
     public void saveInlets(List<Inlet> inlets) {
         try {
-            Connection con = AZCoreRuntimeApp.getInstance().getDatabaseModule().getConnection();
+            Connection con = STEMSystemApp.getInstance().getDatabaseModule().getConnection();
             Statement st = con.createStatement();
             for (Inlet inlet : inlets) {
                 String sqlquery = "SELECT `inlet_id` FROM `addon_heater_inlets` WHERE `index` = " + inlet.getIndex();
@@ -110,7 +111,7 @@ public class DBLogger {
                 sqlquery = "INSERT INTO `addon_heater_inlets_data` (`inlet_id`, `health`, `value`, `timestamp`) values ('" + inletID + "', '" + (inlet.isHealth() ? 1 : 0) + "', '" + inlet.getValue() + "', '" + inlet.getDate() + "')";
                 st.executeUpdate(sqlquery);
             }
-            AZCoreRuntimeApp.getInstance().getDatabaseModule().releaseConnection(con);
+            STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -118,7 +119,7 @@ public class DBLogger {
 
     public void saveOutlets(List<Outlet> outlets) {
         try {
-            Connection con = AZCoreRuntimeApp.getInstance().getDatabaseModule().getConnection();
+            Connection con = STEMSystemApp.getInstance().getDatabaseModule().getConnection();
             Statement st = con.createStatement();
             for (Outlet outlet : outlets) {
                 String sqlquery = "SELECT `outlet_id` FROM `addon_heater_outlets` WHERE `index` = " + outlet.getIndex();
@@ -141,7 +142,7 @@ public class DBLogger {
                 sqlquery = "INSERT INTO `addon_heater_outlets_data` (`outlet_id`, `active`, `timestamp`) values ('" + outletID + "', '" + (outlet.isActive() ? 1 : 0) + "', '" + outlet.getDate() + "')";
                 st.executeUpdate(sqlquery);
             }
-            AZCoreRuntimeApp.getInstance().getDatabaseModule().releaseConnection(con);
+            STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -149,7 +150,7 @@ public class DBLogger {
 
     public void saveNotifies(List<Notify> notifies) {
         try {
-            Connection con = AZCoreRuntimeApp.getInstance().getDatabaseModule().getConnection();
+            Connection con = STEMSystemApp.getInstance().getDatabaseModule().getConnection();
             Statement st = con.createStatement();
             for (Notify notify : notifies) {
                 String sqlquery = "SELECT `notify_id` FROM `addon_heater_notifies` WHERE `index` = " + notify.getIndex();
@@ -172,7 +173,7 @@ public class DBLogger {
                 sqlquery = "INSERT INTO `addon_heater_notifies_data` (`notify_id`, `active`, `timestamp`) values ('" + notifyID + "', '" + (notify.isActive() ? 1 : 0) + "', '" + notify.getDate() + "')";
                 st.executeUpdate(sqlquery);
             }
-            AZCoreRuntimeApp.getInstance().getDatabaseModule().releaseConnection(con);
+            STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
             e.printStackTrace();
         }

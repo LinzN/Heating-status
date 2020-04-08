@@ -12,11 +12,11 @@
 package de.linzn.heatingstatus.data;
 
 
-import de.azcore.azcoreRuntime.AppLogger;
-import de.azcore.azcoreRuntime.taskManagment.AbstractCallback;
-import de.azcore.azcoreRuntime.taskManagment.CallbackTime;
-import de.azcore.azcoreRuntime.taskManagment.operations.OperationOutput;
-import de.azcore.azcoreRuntime.utils.Color;
+import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.taskManagment.AbstractCallback;
+import de.stem.stemSystem.taskManagment.CallbackTime;
+import de.stem.stemSystem.taskManagment.operations.OperationOutput;
+import de.stem.stemSystem.utils.Color;
 
 import java.util.concurrent.TimeUnit;
 

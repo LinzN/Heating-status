@@ -12,12 +12,12 @@
 package de.linzn.heatingstatus.command;
 
 
-import de.azcore.azcoreRuntime.AppLogger;
-import de.azcore.azcoreRuntime.modules.commandModule.ICommand;
 import de.linzn.heatingstatus.HeatingStatusPlugin;
 import de.linzn.heatingstatus.objects.Inlet;
 import de.linzn.heatingstatus.objects.Notify;
 import de.linzn.heatingstatus.objects.Outlet;
+import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.modules.commandModule.ICommand;
 
 import java.util.List;
 

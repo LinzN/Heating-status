@@ -12,9 +12,9 @@
 package de.linzn.heatingstatus.data;
 
 
-import de.azcore.azcoreRuntime.AZCoreRuntimeApp;
-import de.azcore.azcoreRuntime.taskManagment.operations.AbstractOperation;
-import de.azcore.azcoreRuntime.taskManagment.operations.OperationOutput;
+import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.taskManagment.operations.AbstractOperation;
+import de.stem.stemSystem.taskManagment.operations.OperationOutput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -34,7 +34,7 @@ public class HeaterRequestOperation extends AbstractOperation {
             e.printStackTrace();
             operationOutput.setExit(-1);
         }
-        AZCoreRuntimeApp.getInstance().getZSocketModule().getzServer().getClients().values().forEach(serverConnection -> serverConnection.writeOutput("heater_data", byteArrayOutputStream.toByteArray()));
+        STEMSystemApp.getInstance().getZSocketModule().getzServer().getClients().values().forEach(serverConnection -> serverConnection.writeOutput("heater_data", byteArrayOutputStream.toByteArray()));
         return operationOutput;
     }
 }

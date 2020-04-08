@@ -12,14 +12,15 @@
 package de.linzn.heatingstatus;
 
 
-import de.azcore.azcoreRuntime.AZCoreRuntimeApp;
-import de.azcore.azcoreRuntime.modules.pluginModule.AZPlugin;
+
 import de.linzn.heatingstatus.command.HeatingCommand;
 import de.linzn.heatingstatus.data.HeaterCallback;
 import de.linzn.heatingstatus.dblogger.DBLogger;
+import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
 
-public class HeatingStatusPlugin extends AZPlugin {
+public class HeatingStatusPlugin extends STEMPlugin {
 
     public static HeatingStatusPlugin heatingStatusPlugin;
 
@@ -34,9 +35,9 @@ public class HeatingStatusPlugin extends AZPlugin {
 
     @Override
     public void onEnable() {
-        AZCoreRuntimeApp.getInstance().getZSocketModule().getzServer().registerEvents(new DataListener());
-        AZCoreRuntimeApp.getInstance().getCommandModule().registerCommand("heating", new HeatingCommand());
-        AZCoreRuntimeApp.getInstance().getCallBackService().registerCallbackListener(new HeaterCallback(), this);
+        STEMSystemApp.getInstance().getZSocketModule().getzServer().registerEvents(new DataListener());
+        STEMSystemApp.getInstance().getCommandModule().registerCommand("heating", new HeatingCommand());
+        STEMSystemApp.getInstance().getCallBackService().registerCallbackListener(new HeaterCallback(), this);
     }
 
     @Override
