@@ -72,7 +72,7 @@ public class HeaterProcessor2 {
                 inlet.update(health, value);
             }
         }
-        HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveInlets(this.inletsList);
+        //HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveInlets(this.inletsList);
     }
 
     private void updateOutlets(JSONArray outlets) {
@@ -102,7 +102,7 @@ public class HeaterProcessor2 {
                 outlet.update(active);
             }
         }
-        HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveOutlets(this.outletsList);
+        //HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveOutlets(this.outletsList);
     }
 
     private void updateNotifies(JSONArray notifies) {
@@ -132,7 +132,7 @@ public class HeaterProcessor2 {
                 notify.update(active);
             }
         }
-        HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveNotifies(this.notifiesList);
+        //HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveNotifies(this.notifiesList);
     }
 
     public List<Inlet> getInletsList() {
