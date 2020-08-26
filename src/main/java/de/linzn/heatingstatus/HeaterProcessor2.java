@@ -18,12 +18,14 @@ import de.linzn.heatingstatus.objects.Outlet;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.List;
 
 public class HeaterProcessor2 {
     private List<Inlet> inletsList;
     private List<Outlet> outletsList;
     private List<Notify> notifiesList;
+    private Date date;
 
     public HeaterProcessor2() {
         this.loadData();
@@ -42,6 +44,7 @@ public class HeaterProcessor2 {
         this.updateOutlets(outlets);
         JSONArray notifies = rawJsonObject.getJSONArray("notifies");
         this.updateNotifies(notifies);
+        this.date = new Date();
     }
 
     private void updateInlets(JSONArray inlets) {
@@ -145,5 +148,9 @@ public class HeaterProcessor2 {
 
     public List<Notify> getNotifiesList() {
         return notifiesList;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }
