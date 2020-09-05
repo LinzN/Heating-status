@@ -50,92 +50,71 @@ public class HeaterProcessor2 {
     private void updateInlets(JSONArray inlets) {
         for (int i = 0; i < inlets.length(); i++) {
             JSONObject jsonInlet = inlets.getJSONObject(i);
-            if (!jsonInlet.getString("description").equalsIgnoreCase("  -----") && !jsonInlet.getString("description").isEmpty()) {
-                int index = jsonInlet.getInt("index");
-                boolean health = jsonInlet.getString("state").equalsIgnoreCase("OK");
-                double value = jsonInlet.getDouble("value");
 
-                /* Get inlet from list*/
-                Inlet inlet = null;
-                for (Inlet tempInlet : inletsList) {
-                    if (tempInlet.getIndex() == index) {
-                        inlet = tempInlet;
-                        break;
-                    }
+            int index = jsonInlet.getInt("index");
+            boolean health = jsonInlet.getString("state").equalsIgnoreCase("OK");
+            double value = jsonInlet.getDouble("value");
+
+            /* Get inlet from list*/
+            Inlet inlet = null;
+            for (Inlet tempInlet : inletsList) {
+                if (tempInlet.getIndex() == index) {
+                    inlet = tempInlet;
+                    break;
                 }
+            }
 
-                /* Create inlet if not exist*/
-                if (inlet == null) {
-                    String name = jsonInlet.getString("description");
-                    inlet = new Inlet(index, name);
-                    this.inletsList.add(inlet);
-                }
-
-                /* Update inlet with new data */
+            /* Update inlet with new data */
+            if (inlet != null) {
                 inlet.update(health, value);
             }
         }
-        //HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveInlets(this.inletsList);
     }
 
     private void updateOutlets(JSONArray outlets) {
         for (int i = 0; i < outlets.length(); i++) {
             JSONObject jsonOutlet = outlets.getJSONObject(i);
-            if (!jsonOutlet.getString("description").equalsIgnoreCase("  -----") && !jsonOutlet.getString("description").isEmpty()) {
-                int index = jsonOutlet.getInt("index");
-                boolean active = jsonOutlet.getString("value").equalsIgnoreCase("EIN");
 
-                /* Get outlet from list*/
-                Outlet outlet = null;
-                for (Outlet tempOutlet : outletsList) {
-                    if (tempOutlet.getIndex() == index) {
-                        outlet = tempOutlet;
-                        break;
-                    }
+            int index = jsonOutlet.getInt("index");
+            boolean active = jsonOutlet.getString("value").equalsIgnoreCase("EIN");
+
+            /* Get outlet from list*/
+            Outlet outlet = null;
+            for (Outlet tempOutlet : outletsList) {
+                if (tempOutlet.getIndex() == index) {
+                    outlet = tempOutlet;
+                    break;
                 }
+            }
 
-                /* Create outlet if not exist*/
-                if (outlet == null) {
-                    String name = jsonOutlet.getString("description");
-                    outlet = new Outlet(index, name);
-                    this.outletsList.add(outlet);
-                }
-
-                /* Update outlet with new data */
+            /* Update outlet with new data */
+            if (outlet != null) {
                 outlet.update(active);
             }
         }
-        //HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveOutlets(this.outletsList);
     }
 
     private void updateNotifies(JSONArray notifies) {
         for (int i = 0; i < notifies.length(); i++) {
             JSONObject jsonNotifies = notifies.getJSONObject(i);
-            if (!jsonNotifies.getString("notify").equalsIgnoreCase("  -----") && !jsonNotifies.getString("notify").isEmpty()) {
-                int index = jsonNotifies.getInt("index");
-                boolean active = jsonNotifies.getString("state").equalsIgnoreCase("EIN");
 
-                /* Get notify from list*/
-                Notify notify = null;
-                for (Notify tempNotify : notifiesList) {
-                    if (tempNotify.getIndex() == index) {
-                        notify = tempNotify;
-                        break;
-                    }
+            int index = jsonNotifies.getInt("index");
+            boolean active = jsonNotifies.getString("state").equalsIgnoreCase("EIN");
+
+            /* Get notify from list*/
+            Notify notify = null;
+            for (Notify tempNotify : notifiesList) {
+                if (tempNotify.getIndex() == index) {
+                    notify = tempNotify;
+                    break;
                 }
+            }
 
-                /* Create notify if not exist*/
-                if (notify == null) {
-                    String name = jsonNotifies.getString("notify");
-                    notify = new Notify(index, name);
-                    this.notifiesList.add(notify);
-                }
-
-                /* Update notify with new data */
+            /* Update notify with new data */
+            if (notify != null) {
                 notify.update(active);
             }
         }
-        //HeatingStatusPlugin.heatingStatusPlugin.dbLogger.saveNotifies(this.notifiesList);
     }
 
     public List<Inlet> getInletsList() {
