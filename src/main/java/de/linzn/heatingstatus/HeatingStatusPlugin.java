@@ -16,6 +16,8 @@ package de.linzn.heatingstatus;
 import de.linzn.heatingstatus.command.HeatingCommand;
 import de.linzn.heatingstatus.data.HeaterCallback;
 import de.linzn.heatingstatus.dblogger.DBLogger;
+import de.linzn.heatingstatus.restfulapi.GET_HeaterData;
+import de.linzn.restfulapi.RestFulApiPlugin;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
@@ -38,6 +40,7 @@ public class HeatingStatusPlugin extends STEMPlugin {
         STEMSystemApp.getInstance().getZSocketModule().getzServer().registerEvents(new DataListener());
         STEMSystemApp.getInstance().getCommandModule().registerCommand("heating", new HeatingCommand());
         STEMSystemApp.getInstance().getCallBackService().registerCallbackListener(new HeaterCallback(), this);
+        RestFulApiPlugin.restFulApiPlugin.registerIGetJSONClass(new GET_HeaterData(this));
     }
 
     @Override
