@@ -15,6 +15,7 @@ import de.linzn.heatingstatus.HeatingStatusPlugin;
 import de.linzn.heatingstatus.objects.Inlet;
 import de.linzn.heatingstatus.objects.Notify;
 import de.linzn.heatingstatus.objects.Outlet;
+import de.linzn.openJL.math.FloatingPoint;
 import de.linzn.restfulapi.api.jsonapi.get.IGetJSON;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -64,6 +65,37 @@ public class GET_HeaterData implements IGetJSON {
         jsonObject.put("outlets", outletsArray);
         jsonObject.put("notifies", notifiesArray);
 
+        JSONObject simpleData = new JSONObject();
+
+        String status = "SLEEP";
+        double temp = 0;
+        for (Outlet outlet : outlets) {
+            if (outlet.getIndex() == 1) {
+                if (outlet.isActive()) {
+                    status = "HEATING";
+                }
+                break;
+            }
+        }
+
+        for (Notify notify : notifies) {
+            if (notify.isActive()) {
+                status = "ERROR";
+                break;
+            }
+        }
+
+        for (Inlet inlet : inlets) {
+            if (inlet.getIndex() == 3) {
+                temp = FloatingPoint.round(inlet.getValue(), 2);
+                break;
+            }
+        }
+
+        simpleData.put("status", status);
+        simpleData.put("temperature", temp);
+
+        jsonObject.put("simple", simpleData);
         return jsonObject;
     }
 
@@ -74,6 +106,6 @@ public class GET_HeaterData implements IGetJSON {
 
     @Override
     public String name() {
-        return "heater-data";
+        return "heater";
     }
 }
