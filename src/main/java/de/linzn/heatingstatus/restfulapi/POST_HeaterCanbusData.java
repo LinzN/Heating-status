@@ -19,13 +19,14 @@ import org.json.JSONObject;
 public class POST_HeaterCanbusData implements IRequest {
     @Override
     public Object proceedRequestData(RequestData requestData) {
-        JSONObject jsonObject = new JSONObject();
-        JSONObject requestBody = new JSONObject(requestData.getPostQueryData().get("requestBody"));
+        String data = requestData.getPostQueryData().get("requestBody");
+        JSONObject requestBody = new JSONObject(data);
+        HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.process(requestBody);
 
+
+        JSONObject jsonObject = new JSONObject();
         jsonObject.put("data", requestBody);
         jsonObject.put("valid", requestBody.length() > 0);
-
-        HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.process(jsonObject);
         return jsonObject;
     }
 
