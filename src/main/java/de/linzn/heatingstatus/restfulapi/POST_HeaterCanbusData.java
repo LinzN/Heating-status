@@ -16,7 +16,7 @@ import de.linzn.restfulapi.api.jsonapi.IRequest;
 import de.linzn.restfulapi.api.jsonapi.RequestData;
 import org.json.JSONObject;
 
-public class POST_HeaterData implements IRequest {
+public class POST_HeaterCanbusData implements IRequest {
     @Override
     public Object proceedRequestData(RequestData requestData) {
         JSONObject jsonObject = new JSONObject();
