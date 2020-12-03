@@ -37,7 +37,7 @@ public class HeaterProcessor2 {
         this.notifiesList = HeatingStatusPlugin.heatingStatusPlugin.dbLogger.loadNotifies();
     }
 
-    void process(JSONObject rawJsonObject) {
+    public void process(JSONObject rawJsonObject) {
         JSONArray inlets = rawJsonObject.getJSONArray("inlets");
         this.updateInlets(inlets);
         JSONArray outlets = rawJsonObject.getJSONArray("outlets");

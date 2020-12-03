@@ -16,9 +16,10 @@ import de.linzn.heatingstatus.HeatingStatusPlugin;
 import de.linzn.heatingstatus.objects.Inlet;
 import de.linzn.heatingstatus.objects.Notify;
 import de.linzn.heatingstatus.objects.Outlet;
-import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.commandModule.ICommand;
 
+import java.util.Date;
 import java.util.List;
 
 public class HeatingCommand implements ICommand {
@@ -39,25 +40,30 @@ public class HeatingCommand implements ICommand {
         List<Outlet> outlets = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getOutletsList();
         List<Notify> notifies = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getNotifiesList();
 
-        AppLogger.logger("############################################", false);
-        AppLogger.logger("## Inlets:", false);
-        AppLogger.logger("############################################", false);
+        long lastSync = (new Date().getTime() - HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getDate().getTime()) / 1000;
+
+        STEMSystemApp.LOGGER.LIVE("############################################");
+        STEMSystemApp.LOGGER.LIVE("## Inlets:");
+        STEMSystemApp.LOGGER.LIVE("############################################");
         for (Inlet inlet : inlets) {
-            AppLogger.logger(inlet.getName() + " status -> " + inlet.isHealth() + " value -> " + inlet.getValue(), false);
+            STEMSystemApp.LOGGER.LIVE(inlet.getName() + " status -> " + inlet.isHealth() + " value -> " + inlet.getValue());
         }
 
-        AppLogger.logger("############################################", false);
-        AppLogger.logger("## Outlets:", false);
-        AppLogger.logger("############################################", false);
+        STEMSystemApp.LOGGER.LIVE("############################################");
+        STEMSystemApp.LOGGER.LIVE("## Outlets:");
+        STEMSystemApp.LOGGER.LIVE("############################################");
         for (Outlet outlet : outlets) {
-            AppLogger.logger(outlet.getName() + " active -> " + outlet.isActive(), false);
+            STEMSystemApp.LOGGER.LIVE(outlet.getName() + " active -> " + outlet.isActive());
         }
-        AppLogger.logger("############################################", false);
-        AppLogger.logger("## Notifies:", false);
-        AppLogger.logger("############################################", false);
+        STEMSystemApp.LOGGER.LIVE("############################################");
+        STEMSystemApp.LOGGER.LIVE("## Notifies:");
+        STEMSystemApp.LOGGER.LIVE("############################################");
         for (Notify notify : notifies) {
-            AppLogger.logger(notify.getName() + " status -> " + notify.isActive(), false);
+            STEMSystemApp.LOGGER.LIVE(notify.getName() + " status -> " + notify.isActive());
         }
 
+        STEMSystemApp.LOGGER.LIVE("############################################");
+        STEMSystemApp.LOGGER.LIVE("## Last sync:");
+        STEMSystemApp.LOGGER.LIVE(lastSync + " seconds ago!");
     }
 }
