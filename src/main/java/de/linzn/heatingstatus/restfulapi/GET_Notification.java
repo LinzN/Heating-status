@@ -13,13 +13,14 @@ package de.linzn.heatingstatus.restfulapi;
 
 import de.linzn.heatingstatus.HeatingStatusPlugin;
 import de.linzn.heatingstatus.objects.Notify;
-import de.linzn.restfulapi.api.jsonapi.get.IGetJSON;
+import de.linzn.restfulapi.api.jsonapi.IRequest;
+import de.linzn.restfulapi.api.jsonapi.RequestData;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class GET_Notification implements IGetJSON {
+public class GET_Notification implements IRequest {
 
     private final HeatingStatusPlugin heatingStatusPlugin;
 
@@ -28,7 +29,7 @@ public class GET_Notification implements IGetJSON {
     }
 
     @Override
-    public Object getRequestData(List<String> inputList) {
+    public Object proceedRequestData(RequestData requestData) {
         JSONArray jsonArray = new JSONArray();
 
         List<Notify> notifies = this.heatingStatusPlugin.heaterProcessor.getNotifiesList();
@@ -46,8 +47,8 @@ public class GET_Notification implements IGetJSON {
     }
 
     @Override
-    public Object getGenericData() {
-        return getRequestData(null);
+    public Object genericData() {
+        return proceedRequestData(null);
     }
 
     @Override
