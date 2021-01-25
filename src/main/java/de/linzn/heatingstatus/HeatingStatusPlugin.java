@@ -18,7 +18,6 @@ import de.linzn.heatingstatus.data.HeaterCallback;
 import de.linzn.heatingstatus.dblogger.DBLogger;
 import de.linzn.heatingstatus.restfulapi.GET_HeaterData;
 import de.linzn.heatingstatus.restfulapi.GET_Notification;
-import de.linzn.heatingstatus.restfulapi.POST_HeaterCanbusData;
 import de.linzn.restfulapi.RestFulApiPlugin;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
@@ -39,12 +38,11 @@ public class HeatingStatusPlugin extends STEMPlugin {
 
     @Override
     public void onEnable() {
-        STEMSystemApp.getInstance().getZSocketModule().getzServer().registerEvents(new DataListener());
         STEMSystemApp.getInstance().getCallBackService().registerCallbackListener(new HeaterCallback(), this);
         STEMSystemApp.getInstance().getCommandModule().registerCommand("heating", new HeatingCommand());
+        STEMSystemApp.getInstance().getMqttModule().subscribe("uvr/canbus/data", new MqttCanbusListener());
         RestFulApiPlugin.restFulApiPlugin.registerIGetJSONClass(new GET_HeaterData(this));
         RestFulApiPlugin.restFulApiPlugin.registerIGetJSONClass(new GET_Notification(this));
-        RestFulApiPlugin.restFulApiPlugin.registerIPostJSONClass(new POST_HeaterCanbusData());
     }
 
     @Override
