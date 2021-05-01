@@ -12,11 +12,10 @@
 package de.linzn.heatingstatus.data;
 
 
-import de.stem.stemSystem.AppLogger;
+import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.taskManagment.AbstractCallback;
 import de.stem.stemSystem.taskManagment.CallbackTime;
 import de.stem.stemSystem.taskManagment.operations.OperationOutput;
-import de.stem.stemSystem.utils.Color;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +28,7 @@ public class HeaterCallback extends AbstractCallback {
 
     @Override
     public void callback(OperationOutput operationOutput) {
-        AppLogger.debug(Color.GREEN + "Heating data request send");
+        STEMSystemApp.LOGGER.DEBUG("Heating data request send");
     }
 
     @Override

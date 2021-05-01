@@ -41,7 +41,7 @@ public class DBLogger {
             }
             STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
-            e.printStackTrace();
+            STEMSystemApp.LOGGER.ERROR(e);
         }
         return inlets;
     }
@@ -61,7 +61,7 @@ public class DBLogger {
             }
             STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
-            e.printStackTrace();
+            STEMSystemApp.LOGGER.ERROR(e);
         }
         return outlets;
     }
@@ -81,7 +81,7 @@ public class DBLogger {
             }
             STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
-            e.printStackTrace();
+            STEMSystemApp.LOGGER.ERROR(e);
         }
         return notifies;
     }
@@ -113,7 +113,7 @@ public class DBLogger {
             }
             STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
-            e.printStackTrace();
+            STEMSystemApp.LOGGER.ERROR(e);
         }
     }
 
@@ -144,7 +144,7 @@ public class DBLogger {
             }
             STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
-            e.printStackTrace();
+            STEMSystemApp.LOGGER.ERROR(e);
         }
     }
 
@@ -175,7 +175,7 @@ public class DBLogger {
             }
             STEMSystemApp.getInstance().getDatabaseModule().releaseConnection(con);
         } catch (SQLException e) {
-            e.printStackTrace();
+            STEMSystemApp.LOGGER.ERROR(e);
         }
     }
 }

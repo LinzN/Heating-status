@@ -31,7 +31,7 @@ public class HeaterRequestOperation extends AbstractOperation {
             dataOutputStream.writeUTF("request");
             operationOutput.setExit(0);
         } catch (IOException e) {
-            e.printStackTrace();
+            STEMSystemApp.LOGGER.ERROR(e);
             operationOutput.setExit(-1);
         }
         STEMSystemApp.getInstance().getZSocketModule().getzServer().getClients().values().forEach(serverConnection -> serverConnection.writeOutput("heater_data", byteArrayOutputStream.toByteArray()));
