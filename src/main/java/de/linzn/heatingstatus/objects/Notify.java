@@ -12,8 +12,8 @@
 package de.linzn.heatingstatus.objects;
 
 
+import de.linzn.heatingstatus.HeatingStatusPlugin;
 import de.stem.stemSystem.STEMSystemApp;
-import de.stem.stemSystem.modules.notificationModule.NotificationContainer;
 import de.stem.stemSystem.modules.notificationModule.NotificationPriority;
 
 public class Notify {
@@ -51,8 +51,8 @@ public class Notify {
     private void checkStatus(boolean oldValue) {
         if (!oldValue) {
             if (this.active) {
-                NotificationContainer notificationContainer = new NotificationContainer("New notify " + this.name.toUpperCase() + " with state ACTIVE is called!", NotificationPriority.HIGH);
-                STEMSystemApp.getInstance().getNotificationModule().pushNotification(notificationContainer);
+                String message = "New notify " + this.name.toUpperCase() + " with state ACTIVE is called!";
+                STEMSystemApp.getInstance().getNotificationModule().pushNotification(message, NotificationPriority.HIGH, HeatingStatusPlugin.heatingStatusPlugin);
             }
         }
     }
