@@ -24,7 +24,7 @@ public class MqttCanbusListener implements IMqttMessageListener {
         MQTTCanbusReceiveEvent mqttCanbusReceiveEvent = new MQTTCanbusReceiveEvent(jsonPayload);
         STEMSystemApp.getInstance().getEventModule().getStemEventBus().fireEvent(mqttCanbusReceiveEvent);
 
-        if (!mqttCanbusReceiveEvent.isCancelable()) {
+        if (!mqttCanbusReceiveEvent.isCanceled()) {
             HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.process(jsonPayload);
         }
     }
