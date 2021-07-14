@@ -11,6 +11,8 @@
 
 package de.linzn.heatingstatus;
 
+import de.linzn.heatingstatus.events.MQTTCanbusReceiveEvent;
+import de.stem.stemSystem.STEMSystemApp;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONObject;
@@ -18,7 +20,12 @@ import org.json.JSONObject;
 public class MqttCanbusListener implements IMqttMessageListener {
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
-        JSONObject requestBody = new JSONObject(new String(mqttMessage.getPayload()));
-        HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.process(requestBody);
+        JSONObject jsonPayload = new JSONObject(new String(mqttMessage.getPayload()));
+        MQTTCanbusReceiveEvent mqttCanbusReceiveEvent = new MQTTCanbusReceiveEvent(jsonPayload);
+        STEMSystemApp.getInstance().getEventModule().getStemEventBus().fireEvent(mqttCanbusReceiveEvent);
+
+        if (!mqttCanbusReceiveEvent.isCancelable()) {
+            HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.process(jsonPayload);
+        }
     }
 }
