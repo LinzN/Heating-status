@@ -9,15 +9,20 @@
  *
  */
 
-package de.linzn.heatingstatus.objects;
+package de.linzn.pelltech.objects;
 
-public class Outlet {
+
+import de.linzn.pelltech.PelltechPlugin;
+import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.modules.notificationModule.NotificationPriority;
+
+public class Notify {
     private int index;
     private String name;
     private boolean active;
     private long date;
 
-    public Outlet(int index, String name) {
+    public Notify(int index, String name) {
         this.index = index;
         this.name = name;
         this.active = false;
@@ -25,8 +30,10 @@ public class Outlet {
     }
 
     public void update(boolean active) {
+        boolean oldValue = this.active;
         this.active = active;
         this.date = System.currentTimeMillis();
+        this.checkStatus(oldValue);
     }
 
     public int getIndex() {
@@ -39,6 +46,15 @@ public class Outlet {
 
     public boolean isActive() {
         return active;
+    }
+
+    private void checkStatus(boolean oldValue) {
+        if (!oldValue) {
+            if (this.active) {
+                String message = "New notify " + this.name.toUpperCase() + " with state ACTIVE is called!";
+                STEMSystemApp.getInstance().getNotificationModule().pushNotification(message, NotificationPriority.HIGH, PelltechPlugin.pelltechPlugin);
+            }
+        }
     }
 
     public long getDate() {

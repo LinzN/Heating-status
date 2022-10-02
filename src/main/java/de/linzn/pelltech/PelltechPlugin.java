@@ -9,29 +9,29 @@
  *
  */
 
-package de.linzn.heatingstatus;
+package de.linzn.pelltech;
 
 
 
-import de.linzn.heatingstatus.command.HeatingCommand;
-import de.linzn.heatingstatus.data.HeaterCallback;
-import de.linzn.heatingstatus.dblogger.DBLogger;
-import de.linzn.heatingstatus.restfulapi.GET_HeaterData;
-import de.linzn.heatingstatus.restfulapi.GET_Notification;
+import de.linzn.pelltech.command.HeatingCommand;
+import de.linzn.pelltech.data.HeaterCallback;
+import de.linzn.pelltech.dblogger.DBLogger;
+import de.linzn.pelltech.restfulapi.GET_HeaterData;
+import de.linzn.pelltech.restfulapi.GET_Notification;
 import de.linzn.restfulapi.RestFulApiPlugin;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
 
-public class HeatingStatusPlugin extends STEMPlugin {
+public class PelltechPlugin extends STEMPlugin {
 
-    public static HeatingStatusPlugin heatingStatusPlugin;
+    public static PelltechPlugin pelltechPlugin;
 
     public DBLogger dbLogger;
     public HeaterProcessor2 heaterProcessor;
 
-    public HeatingStatusPlugin() {
-        heatingStatusPlugin = this;
+    public PelltechPlugin() {
+        pelltechPlugin = this;
         dbLogger = new DBLogger();
         heaterProcessor = new HeaterProcessor2();
     }

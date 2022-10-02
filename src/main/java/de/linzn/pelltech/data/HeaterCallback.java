@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.heatingstatus.data;
+package de.linzn.pelltech.data;
 
 
 import de.stem.stemSystem.STEMSystemApp;

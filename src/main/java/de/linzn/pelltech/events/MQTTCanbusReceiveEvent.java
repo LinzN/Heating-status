@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.heatingstatus.events;
+package de.linzn.pelltech.events;
 
 import de.stem.stemSystem.modules.eventModule.CancelableEvent;
 import org.json.JSONObject;

@@ -9,13 +9,13 @@
  *
  */
 
-package de.linzn.heatingstatus.command;
+package de.linzn.pelltech.command;
 
 
-import de.linzn.heatingstatus.HeatingStatusPlugin;
-import de.linzn.heatingstatus.objects.Inlet;
-import de.linzn.heatingstatus.objects.Notify;
-import de.linzn.heatingstatus.objects.Outlet;
+import de.linzn.pelltech.PelltechPlugin;
+import de.linzn.pelltech.objects.Inlet;
+import de.linzn.pelltech.objects.Notify;
+import de.linzn.pelltech.objects.Outlet;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.commandModule.ICommand;
 
@@ -36,11 +36,11 @@ public class HeatingCommand implements ICommand {
     }
 
     private void status() {
-        List<Inlet> inlets = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getInletsList();
-        List<Outlet> outlets = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getOutletsList();
-        List<Notify> notifies = HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getNotifiesList();
+        List<Inlet> inlets = PelltechPlugin.pelltechPlugin.heaterProcessor.getInletsList();
+        List<Outlet> outlets = PelltechPlugin.pelltechPlugin.heaterProcessor.getOutletsList();
+        List<Notify> notifies = PelltechPlugin.pelltechPlugin.heaterProcessor.getNotifiesList();
 
-        long lastSync = (new Date().getTime() - HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.getDate().getTime()) / 1000;
+        long lastSync = (new Date().getTime() - PelltechPlugin.pelltechPlugin.heaterProcessor.getDate().getTime()) / 1000;
 
         STEMSystemApp.LOGGER.LIVE("############################################");
         STEMSystemApp.LOGGER.LIVE("## Inlets:");

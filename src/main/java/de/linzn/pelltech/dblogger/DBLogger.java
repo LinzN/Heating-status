@@ -9,12 +9,12 @@
  *
  */
 
-package de.linzn.heatingstatus.dblogger;
+package de.linzn.pelltech.dblogger;
 
 
-import de.linzn.heatingstatus.objects.Inlet;
-import de.linzn.heatingstatus.objects.Notify;
-import de.linzn.heatingstatus.objects.Outlet;
+import de.linzn.pelltech.objects.Inlet;
+import de.linzn.pelltech.objects.Notify;
+import de.linzn.pelltech.objects.Outlet;
 import de.stem.stemSystem.STEMSystemApp;
 
 import java.sql.Connection;

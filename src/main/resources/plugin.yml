@@ -1,4 +1,4 @@
-main: de.linzn.heatingstatus.HeatingStatusPlugin
-name: heating-status
+main: de.linzn.pelltech.PelltechPlugin
+name: pelltech
 version: ${project.version}
 depend: [ restful-api ]

@@ -9,27 +9,23 @@
  *
  */
 
-package de.linzn.heatingstatus.objects;
+package de.linzn.pelltech.objects;
 
-
-public class Inlet {
+public class Outlet {
     private int index;
     private String name;
-    private boolean health;
-    private double value;
+    private boolean active;
     private long date;
 
-    public Inlet(int index, String name) {
+    public Outlet(int index, String name) {
         this.index = index;
         this.name = name;
-        this.health = false;
-        this.value = 0.0;
+        this.active = false;
         this.date = System.currentTimeMillis();
     }
 
-    public void update(boolean health, double value) {
-        this.health = health;
-        this.value = value;
+    public void update(boolean active) {
+        this.active = active;
         this.date = System.currentTimeMillis();
     }
 
@@ -41,12 +37,8 @@ public class Inlet {
         return name;
     }
 
-    public boolean isHealth() {
-        return health;
-    }
-
-    public double getValue() {
-        return value;
+    public boolean isActive() {
+        return active;
     }
 
     public long getDate() {

@@ -9,12 +9,12 @@
  *
  */
 
-package de.linzn.heatingstatus;
+package de.linzn.pelltech;
 
 
-import de.linzn.heatingstatus.objects.Inlet;
-import de.linzn.heatingstatus.objects.Notify;
-import de.linzn.heatingstatus.objects.Outlet;
+import de.linzn.pelltech.objects.Inlet;
+import de.linzn.pelltech.objects.Notify;
+import de.linzn.pelltech.objects.Outlet;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,9 +32,9 @@ public class HeaterProcessor2 {
     }
 
     private void loadData() {
-        this.inletsList = HeatingStatusPlugin.heatingStatusPlugin.dbLogger.loadInlets();
-        this.outletsList = HeatingStatusPlugin.heatingStatusPlugin.dbLogger.loadOutlets();
-        this.notifiesList = HeatingStatusPlugin.heatingStatusPlugin.dbLogger.loadNotifies();
+        this.inletsList = PelltechPlugin.pelltechPlugin.dbLogger.loadInlets();
+        this.outletsList = PelltechPlugin.pelltechPlugin.dbLogger.loadOutlets();
+        this.notifiesList = PelltechPlugin.pelltechPlugin.dbLogger.loadNotifies();
     }
 
     public void process(JSONObject rawJsonObject) {

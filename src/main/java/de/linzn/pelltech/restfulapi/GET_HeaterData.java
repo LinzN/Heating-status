@@ -9,12 +9,12 @@
  *
  */
 
-package de.linzn.heatingstatus.restfulapi;
+package de.linzn.pelltech.restfulapi;
 
-import de.linzn.heatingstatus.HeatingStatusPlugin;
-import de.linzn.heatingstatus.objects.Inlet;
-import de.linzn.heatingstatus.objects.Notify;
-import de.linzn.heatingstatus.objects.Outlet;
+import de.linzn.pelltech.PelltechPlugin;
+import de.linzn.pelltech.objects.Inlet;
+import de.linzn.pelltech.objects.Notify;
+import de.linzn.pelltech.objects.Outlet;
 import de.linzn.openJL.math.FloatingPoint;
 import de.linzn.restfulapi.api.jsonapi.IRequest;
 import de.linzn.restfulapi.api.jsonapi.RequestData;
@@ -24,17 +24,17 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class GET_HeaterData implements IRequest {
-    private final HeatingStatusPlugin heatingStatusPlugin;
+    private final PelltechPlugin pelltechPlugin;
 
-    public GET_HeaterData(HeatingStatusPlugin heatingStatusPlugin) {
-        this.heatingStatusPlugin = heatingStatusPlugin;
+    public GET_HeaterData(PelltechPlugin pelltechPlugin) {
+        this.pelltechPlugin = pelltechPlugin;
     }
 
     @Override
     public Object proceedRequestData(RequestData requestData) {
-        List<Inlet> inlets = this.heatingStatusPlugin.heaterProcessor.getInletsList();
-        List<Outlet> outlets = this.heatingStatusPlugin.heaterProcessor.getOutletsList();
-        List<Notify> notifies = this.heatingStatusPlugin.heaterProcessor.getNotifiesList();
+        List<Inlet> inlets = this.pelltechPlugin.heaterProcessor.getInletsList();
+        List<Outlet> outlets = this.pelltechPlugin.heaterProcessor.getOutletsList();
+        List<Notify> notifies = this.pelltechPlugin.heaterProcessor.getNotifiesList();
 
         JSONObject jsonObject = new JSONObject();
 

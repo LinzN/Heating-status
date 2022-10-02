@@ -9,9 +9,9 @@
  *
  */
 
-package de.linzn.heatingstatus;
+package de.linzn.pelltech;
 
-import de.linzn.heatingstatus.events.MQTTCanbusReceiveEvent;
+import de.linzn.pelltech.events.MQTTCanbusReceiveEvent;
 import de.stem.stemSystem.STEMSystemApp;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -25,7 +25,7 @@ public class MqttCanbusListener implements IMqttMessageListener {
         STEMSystemApp.getInstance().getEventModule().getStemEventBus().fireEvent(mqttCanbusReceiveEvent);
 
         if (!mqttCanbusReceiveEvent.isCanceled()) {
-            HeatingStatusPlugin.heatingStatusPlugin.heaterProcessor.process(jsonPayload);
+            PelltechPlugin.pelltechPlugin.heaterProcessor.process(jsonPayload);
         }
     }
 }

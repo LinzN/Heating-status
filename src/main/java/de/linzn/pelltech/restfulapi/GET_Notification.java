@@ -9,10 +9,10 @@
  *
  */
 
-package de.linzn.heatingstatus.restfulapi;
+package de.linzn.pelltech.restfulapi;
 
-import de.linzn.heatingstatus.HeatingStatusPlugin;
-import de.linzn.heatingstatus.objects.Notify;
+import de.linzn.pelltech.PelltechPlugin;
+import de.linzn.pelltech.objects.Notify;
 import de.linzn.restfulapi.api.jsonapi.IRequest;
 import de.linzn.restfulapi.api.jsonapi.RequestData;
 import org.json.JSONArray;
@@ -22,17 +22,17 @@ import java.util.List;
 
 public class GET_Notification implements IRequest {
 
-    private final HeatingStatusPlugin heatingStatusPlugin;
+    private final PelltechPlugin pelltechPlugin;
 
-    public GET_Notification(HeatingStatusPlugin heatingStatusPlugin) {
-        this.heatingStatusPlugin = heatingStatusPlugin;
+    public GET_Notification(PelltechPlugin pelltechPlugin) {
+        this.pelltechPlugin = pelltechPlugin;
     }
 
     @Override
     public Object proceedRequestData(RequestData requestData) {
         JSONArray jsonArray = new JSONArray();
 
-        List<Notify> notifies = this.heatingStatusPlugin.heaterProcessor.getNotifiesList();
+        List<Notify> notifies = this.pelltechPlugin.heaterProcessor.getNotifiesList();
 
         for (Notify notify : notifies) {
             if (notify.isActive()) {
