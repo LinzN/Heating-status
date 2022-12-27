@@ -2,3 +2,5 @@ main: de.linzn.pelltech.PelltechPlugin
 name: pelltech
 version: ${project.version}
 depend: [ restful-api ]
+buildJobName: ${buildServer.jobName}
+buildNumber: ${buildServer.buildNumber}
