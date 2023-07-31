@@ -11,11 +11,11 @@
 
 package de.linzn.pelltech.restfulapi;
 
+import de.linzn.openJL.math.FloatingPoint;
 import de.linzn.pelltech.PelltechPlugin;
 import de.linzn.pelltech.objects.Inlet;
 import de.linzn.pelltech.objects.Notify;
 import de.linzn.pelltech.objects.Outlet;
-import de.linzn.openJL.math.FloatingPoint;
 import de.linzn.restfulapi.api.jsonapi.IRequest;
 import de.linzn.restfulapi.api.jsonapi.RequestData;
 import org.json.JSONArray;

@@ -12,6 +12,8 @@
 package de.linzn.pelltech.objects;
 
 
+import de.linzn.openJL.math.FloatingPoint;
+
 public class Inlet {
     private int index;
     private String name;
@@ -46,7 +48,7 @@ public class Inlet {
     }
 
     public double getValue() {
-        return value;
+        return FloatingPoint.round(value, 2);
     }
 
     public long getDate() {

@@ -12,12 +12,12 @@
 package de.linzn.pelltech;
 
 
-
 import de.linzn.pelltech.command.HeatingCommand;
 import de.linzn.pelltech.data.HeaterCallback;
 import de.linzn.pelltech.dblogger.DBLogger;
 import de.linzn.pelltech.restfulapi.GET_HeaterData;
 import de.linzn.pelltech.restfulapi.GET_Notification;
+import de.linzn.pelltech.webApi.WebApiHandler;
 import de.linzn.restfulapi.RestFulApiPlugin;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
@@ -26,9 +26,9 @@ import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 public class PelltechPlugin extends STEMPlugin {
 
     public static PelltechPlugin pelltechPlugin;
-
     public DBLogger dbLogger;
     public HeaterProcessor2 heaterProcessor;
+    private WebApiHandler webApiHandler;
 
     public PelltechPlugin() {
         pelltechPlugin = this;
@@ -43,6 +43,7 @@ public class PelltechPlugin extends STEMPlugin {
         STEMSystemApp.getInstance().getMqttModule().subscribe("uvr/canbus/data", new MqttCanbusListener());
         RestFulApiPlugin.restFulApiPlugin.registerIGetJSONClass(new GET_HeaterData(this));
         RestFulApiPlugin.restFulApiPlugin.registerIGetJSONClass(new GET_Notification(this));
+        this.webApiHandler = new WebApiHandler(this);
     }
 
     @Override

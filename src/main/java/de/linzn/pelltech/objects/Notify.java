@@ -14,6 +14,8 @@ package de.linzn.pelltech.objects;
 
 import de.linzn.pelltech.PelltechPlugin;
 import de.stem.stemSystem.STEMSystemApp;
+import de.stem.stemSystem.modules.informationModule.InformationBlock;
+import de.stem.stemSystem.modules.informationModule.InformationIntent;
 import de.stem.stemSystem.modules.notificationModule.NotificationPriority;
 
 public class Notify {
@@ -21,6 +23,8 @@ public class Notify {
     private String name;
     private boolean active;
     private long date;
+
+    private InformationBlock informationBlock = null;
 
     public Notify(int index, String name) {
         this.index = index;
@@ -53,6 +57,22 @@ public class Notify {
             if (this.active) {
                 String message = "New notify " + this.name.toUpperCase() + " with state ACTIVE is called!";
                 STEMSystemApp.getInstance().getNotificationModule().pushNotification(message, NotificationPriority.HIGH, PelltechPlugin.pelltechPlugin);
+
+                if (this.informationBlock != null && this.informationBlock.isActive()) {
+                    this.informationBlock.expire();
+                    this.informationBlock = null;
+                }
+                this.informationBlock = new InformationBlock("Pelltech Heizung", "Neue Meldung: " + this.name.toUpperCase(), PelltechPlugin.pelltechPlugin);
+                this.informationBlock.setIcon("FIRE");
+                this.informationBlock.setExpireTime(-1L);
+                this.informationBlock.addIntent(InformationIntent.SHOW_DISPLAY);
+                STEMSystemApp.getInstance().getInformationModule().queueInformationBlock(informationBlock);
+
+            } else {
+                if (this.informationBlock != null && this.informationBlock.isActive()) {
+                    this.informationBlock.expire();
+                    this.informationBlock = null;
+                }
             }
         }
     }
