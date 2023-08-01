@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PelltechWebApi extends RequestInterface {
@@ -28,6 +30,7 @@ public class PelltechWebApi extends RequestInterface {
         double waterTemperature = -1D;
         int burnerStatus = 0;
 
+        Date lastSync = this.pelltechPlugin.heaterProcessor.getDate();
         List<Inlet> inlets = this.pelltechPlugin.heaterProcessor.getInletsList();
         List<Outlet> outlets = this.pelltechPlugin.heaterProcessor.getOutletsList();
         List<Notify> notifies = this.pelltechPlugin.heaterProcessor.getNotifiesList();
@@ -79,6 +82,8 @@ public class PelltechWebApi extends RequestInterface {
         JSONObject burnerData = new JSONObject();
         burnerData.put("watertemperature", waterTemperature);
         burnerData.put("burnerstatus", burnerStatus);
+        burnerData.put("datesimple", new SimpleDateFormat("hh:mm:ss").format(lastSync));
+        burnerData.put("date", new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss").format(lastSync));
 
         apiResponse.getJSONObject().put("simple", burnerData);
 
