@@ -82,8 +82,13 @@ public class PelltechWebApi extends RequestInterface {
         JSONObject burnerData = new JSONObject();
         burnerData.put("watertemperature", waterTemperature);
         burnerData.put("burnerstatus", burnerStatus);
-        burnerData.put("datesimple", new SimpleDateFormat("hh:mm:ss").format(lastSync));
-        burnerData.put("date", new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss").format(lastSync));
+        if(lastSync != null){
+            burnerData.put("datesimple", new SimpleDateFormat("hh:mm:ss").format(lastSync));
+            burnerData.put("date", new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss").format(lastSync));
+        } else {
+            burnerData.put("datesimple", "N.A");
+            burnerData.put("date", "No Date yet");
+        }
 
         apiResponse.getJSONObject().put("simple", burnerData);
 
