@@ -83,8 +83,8 @@ public class PelltechWebApi extends RequestInterface {
         burnerData.put("watertemperature", waterTemperature);
         burnerData.put("burnerstatus", burnerStatus);
         if(lastSync != null){
-            burnerData.put("datesimple", new SimpleDateFormat("hh:mm:ss").format(lastSync));
-            burnerData.put("date", new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss").format(lastSync));
+            burnerData.put("datesimple", new SimpleDateFormat("HH:mm:ss").format(lastSync));
+            burnerData.put("date", new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss").format(lastSync));
         } else {
             burnerData.put("datesimple", "N.A");
             burnerData.put("date", "No Date yet");
